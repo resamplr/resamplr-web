@@ -16,3 +16,13 @@ gulp
 ```
 
 Files will be generated in a `dist` folder.
+
+# Testing
+
+For now, you must disable CORS.  In your directory, type
+
+```
+gulp serve
+```
+
+and a server at `localhost:8000` will spawn.

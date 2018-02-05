@@ -6,6 +6,7 @@ var plumber = require('gulp-plumber');
 var del = require('del');
 var concat = require('gulp-concat');
 var stylus = require('gulp-stylus');
+var webserver = require('gulp-webserver');
 
 // builds elm files and static resources (i.e. html and css) 
 // from src to public folder
@@ -14,7 +15,7 @@ var paths = {
  staticAssets: 'static/**/*.{html,css,js}',
  // where our compiled assets should sit
  // remember to .gitignore!
- dest: 'dist'
+ dest: 'dist',
  stylus: 'styles/**/*.styl'
 };
 
@@ -37,7 +38,7 @@ gulp.task('elm', ['elm-init'], function() {
 
 // compile stylus css 
 gulp.task('stylus', function() {
-  return gulp.src(patths.stylus)
+  return gulp.src(paths.stylus)
     .pipe(plumber())
     .pipe(stylus())
     .pipe(concat('main.css'))
@@ -56,7 +57,18 @@ gulp.task('watch', function() {
   gulp.watch(paths.staticAssets, ['static']);
 });
 
+// spawn a small test server for our application
+gulp.task('webserver', function() {
+  gulp.src('dist/')
+    .pipe(webserver({
+      livereload: true,
+      directoryListing: false,
+      open: false
+    }));
+});
 
-gulp.task('build', ['elm', 'staticAssets']);
+
+gulp.task('build', ['elm', 'staticAssets', 'stylus']);
 gulp.task('dev', ['build', 'watch']);
 gulp.task('default', ['build']);
+gulp.task('serve', ['dev', 'webserver']);

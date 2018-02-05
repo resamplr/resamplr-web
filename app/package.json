@@ -19,6 +19,7 @@
     "gulp-plumber": "^1.2.0",
     "gulp-rename": "^1.2.2",
     "gulp-stylus": "^2.7.0",
+    "gulp-webserver": "^0.9.1",
     "uglify-js-brunch": "^2.10.0"
   }
 }
