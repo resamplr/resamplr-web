@@ -55,6 +55,7 @@ gulp.task('staticAssets', function() {
 gulp.task('watch', function() {
   gulp.watch(paths.elm, ['elm']);
   gulp.watch(paths.staticAssets, ['static']);
+  gulp.watch(paths.stylus, ['stylus']);
 });
 
 // spawn a small test server for our application
@@ -71,4 +72,4 @@ gulp.task('webserver', function() {
 gulp.task('build', ['elm', 'staticAssets', 'stylus']);
 gulp.task('dev', ['build', 'watch']);
 gulp.task('default', ['build']);
-gulp.task('serve', ['dev', 'webserver']);
+gulp.task('serve', ['build', 'webserver', 'watch']);
