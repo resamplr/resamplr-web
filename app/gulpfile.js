@@ -5,6 +5,7 @@ var rename = require('gulp-rename');
 var plumber = require('gulp-plumber');
 var del = require('del');
 var concat = require('gulp-concat');
+var stylus = require('gulp-stylus');
 
 // builds elm files and static resources (i.e. html and css) 
 // from src to public folder
@@ -14,6 +15,7 @@ var paths = {
  // where our compiled assets should sit
  // remember to .gitignore!
  dest: 'dist'
+ stylus: 'styles/**/*.styl'
 };
 
 // clear all files from our dist folder
@@ -31,6 +33,15 @@ gulp.task('elm', ['elm-init'], function() {
         .pipe(rename("main.js"))
         .pipe(minify({noSource: true}))
         .pipe(gulp.dest(paths.dest + "/js/"));
+});
+
+// compile stylus css 
+gulp.task('stylus', function() {
+  return gulp.src(patths.stylus)
+    .pipe(plumber())
+    .pipe(stylus())
+    .pipe(concat('main.css'))
+    .pipe(gulp.dest(paths.dest + "/css/"));
 });
 
 // compile static assets

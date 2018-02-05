@@ -18,6 +18,7 @@
     "gulp-minify": "^2.1.0",
     "gulp-plumber": "^1.2.0",
     "gulp-rename": "^1.2.2",
+    "gulp-stylus": "^2.7.0",
     "uglify-js-brunch": "^2.10.0"
   }
 }
