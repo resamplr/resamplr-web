@@ -1,13 +1,16 @@
 var gulp = require('gulp');
 var elm = require('gulp-elm');
+var minify = require('gulp-minify');
+var rename = require('gulp-rename');
 var plumber = require('gulp-plumber');
 var del = require('del');
+var concat = require('gulp-concat');
 
 // builds elm files and static resources (i.e. html and css) 
 // from src to public folder
 var paths = {
- elm: 'elm/*.elm',
- staticAssets: 'static/**.{html,css,js}',
+ elm: 'elm/Main.elm',
+ staticAssets: 'static/**/*.{html,css,js}',
  // where our compiled assets should sit
  // remember to .gitignore!
  dest: 'dist'
@@ -25,7 +28,9 @@ gulp.task('elm', ['elm-init'], function() {
     return gulp.src(paths.elm)
         .pipe(plumber())
         .pipe(elm())
-        .pipe(gulp.dest(paths.dest));
+        .pipe(rename("main.js"))
+        .pipe(minify({noSource: true}))
+        .pipe(gulp.dest(paths.dest + "/js/"));
 });
 
 // compile static assets
