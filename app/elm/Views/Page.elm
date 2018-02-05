@@ -43,7 +43,8 @@ frame isLoading page content =
 
 viewHeader : ActivePage -> Bool -> Html msg
 viewHeader page isLoading =
-    div [] []
+    header [ class "view-header" ]
+        []
 
 
 viewFooter : Html msg
@@ -53,7 +54,8 @@ viewFooter =
 
 navbarLink : ActivePage -> Route -> List (Html msg) -> Html msg
 navbarLink page route linkContent =
-    div [] []
+    div []
+        []
 
 
 isActive : ActivePage -> Route -> Bool

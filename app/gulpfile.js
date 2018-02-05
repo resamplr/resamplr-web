@@ -12,6 +12,8 @@ var webserver = require('gulp-webserver');
 // from src to public folder
 var paths = {
  elm: 'elm/Main.elm',
+ // used for watching the directory
+ elmDir: 'elm/**/*.elm',
  staticAssets: 'static/**/*.{html,css,js}',
  // where our compiled assets should sit
  // remember to .gitignore!
@@ -53,7 +55,7 @@ gulp.task('staticAssets', function() {
 });
 
 gulp.task('watch', function() {
-  gulp.watch(paths.elm, ['elm']);
+  gulp.watch(paths.elmDir, ['elm']);
   gulp.watch(paths.staticAssets, ['static']);
   gulp.watch(paths.stylus, ['stylus']);
 });
