@@ -19,7 +19,7 @@ dev-build-frontend:
 	gulp
 
 # Run a development server
-dev-serve:
+dev-run:
 	@echo "Starting up the server"
 	cargo run
 
