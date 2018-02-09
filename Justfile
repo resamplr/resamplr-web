@@ -1,6 +1,6 @@
 setup:
 	@echo "Installing necessary stuff"
-	npm install -g elm gulp
+	npm install -g elm gulp --no-bin-links
 
 # ----------------- DEV ------------------ #
 
@@ -34,7 +34,7 @@ prod-build-server:
 
 prod-build-frontend:
 	@echo "Building fronend code"
-	gulp
+	gulp build
 
 # ----------------- GENERAL ------------------ #
 
