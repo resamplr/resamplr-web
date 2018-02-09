@@ -6,7 +6,6 @@ var plumber = require('gulp-plumber');
 var del = require('del');
 var concat = require('gulp-concat');
 var stylus = require('gulp-stylus');
-var sass = require('gulp-sass');
 var webserver = require('gulp-webserver');
 var gulpMerge = require('gulp-merge')
 
@@ -20,8 +19,7 @@ var paths = {
  // where our compiled assets should sit
  // remember to .gitignore!
  dest: 'public',
- stylus: 'app/styles/**/*.styl',
- sass: 'app/styles/**/*.sass'
+ stylus: 'app/styles/**/*.styl'
 };
 
 // clear all files from our dist folder

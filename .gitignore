@@ -2,3 +2,4 @@ public
 target
 node_modules
 elm-stuff
+.vagrant

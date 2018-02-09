@@ -1,15 +1,10 @@
 # Resamplr
 
-This is a rewrite in Elm and Rocket.  To run, make sure you have the following installed:
-
-- nodejs
-- npm
-- rust nightly
+This is a rewrite in Elm and Rocket.  To run, install VirtualBox and Vagrant.
 
 ## Running
 
-To run the server in development, first install dependencies.
+Simply run `vagrant up` and then `vagrant ssh`
 
-```
-
-```
+To build, run `just dev-build`.  To serve and watch for changes,
+instead run `just dev-run`.

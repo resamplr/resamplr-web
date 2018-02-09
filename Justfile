@@ -1,6 +1,6 @@
 setup:
 	@echo "Installing necessary stuff"
-	npm install
+	npm install -g elm gulp
 
 # ----------------- DEV ------------------ #
 
@@ -16,12 +16,13 @@ dev-build-server:
 # Build elm frontend only
 dev-build-frontend:
 	@echo "Building fontend code"
-	gulp
+	gulp build
 
-# Run a development server
+# Run a development server and watch for changes
 dev-run:
 	@echo "Starting up the server"
 	cargo run
+	# TODO: Watch for changes
 
 # ----------------- PROD ------------------ #
 
