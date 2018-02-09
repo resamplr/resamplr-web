@@ -6,19 +6,22 @@ var plumber = require('gulp-plumber');
 var del = require('del');
 var concat = require('gulp-concat');
 var stylus = require('gulp-stylus');
+var sass = require('gulp-sass');
 var webserver = require('gulp-webserver');
+var gulpMerge = require('gulp-merge')
 
 // builds elm files and static resources (i.e. html and css) 
 // from src to public folder
 var paths = {
- elm: 'elm/Main.elm',
+ elm: 'app/elm/Main.elm',
  // used for watching the directory
- elmDir: 'elm/**/*.elm',
- staticAssets: 'static/**/*.{html,css,js}',
+ elmDir: 'app/elm/**/*.elm',
+ staticAssets: 'app/static/**/*.{html,css,js}',
  // where our compiled assets should sit
  // remember to .gitignore!
- dest: 'dist',
- stylus: 'styles/**/*.styl'
+ dest: 'public',
+ stylus: 'app/styles/**/*.styl',
+ sass: 'app/styles/**/*.sass'
 };
 
 // clear all files from our dist folder
@@ -41,10 +44,10 @@ gulp.task('elm', ['elm-init'], function() {
 // compile stylus css 
 gulp.task('stylus', function() {
   return gulp.src(paths.stylus)
-    .pipe(plumber())
-    .pipe(stylus())
-    .pipe(concat('main.css'))
-    .pipe(gulp.dest(paths.dest + "/css/"));
+      .pipe(stylus())
+      .pipe(minify())
+      .pipe(concat('main.css'))
+      .pipe(gulp.dest(paths.dest + "/css/"));
 });
 
 // compile static assets
@@ -64,7 +67,7 @@ gulp.task('watch', function() {
 gulp.task('webserver', function() {
   gulp.src('dist/')
     .pipe(webserver({
-      livereload: true,
+      livereload: false,
       directoryListing: false,
       open: false
     }));

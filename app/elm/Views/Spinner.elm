@@ -7,8 +7,5 @@ import Util exposing ((=>))
 
 spinner : Html msg
 spinner =
-    li [ class "sk-three-bounce", style [ "float" => "left", "margin" => "8px" ] ]
-        [ div [ class "sk-child sk-bounce1" ] []
-        , div [ class "sk-child sk-bounce2" ] []
-        , div [ class "sk-child sk-bounce3" ] []
-        ]
+    div [ class "sk-three-bounce", style [ "float" => "left", "margin" => "8px", "background" => "green", "width" => "100px", "height" => "100px" ] ]
+        []

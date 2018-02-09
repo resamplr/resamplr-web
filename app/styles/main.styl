@@ -1,9 +1,57 @@
 @require 'colors.styl'
 
+//--------------- MEDIA QUERIES --------------------//
+
+$padding = 36px
+$small-padding = 16px
+
+$media_medium = 800px
+$media_small = 460px
+
+small()
+  @media screen and (max-width: $media_small)
+    {block}
+
+medium()
+  @media screen and (max-width: $media_medium)
+    {block}
+
+
+//--------------- GENERAL --------------------//
+
+a
+	text-decoration none
+
 body
 	background white
 	
-// Navigation bar
 .view-header
-	min-height 70px
-	border-bottom 1px solid borderColor
+	// navbar
+	nav
+		border-bottom 1px solid borderColor
+		position fixed
+		width 100%
+		z-index 1000
+		padding 0 $padding 0 $padding
+		text-transform uppercase
+		+small()
+			padding 0 $small-padding 0 $small-padding
+		// logotype
+		h2
+			padding 16px 0 16px 0
+	.spacer
+		width 100%
+		height 72px
+
+// --- product page --- //
+.products-page
+	padding: 16px;
+	.product-tile-container
+		padding 16px
+		box-sizing border-box
+		.product-tile
+			border 1px solid borderColor
+			border-radius 3px
+			box-sizing border-box
+			padding 8px 16px 8px 16px
+

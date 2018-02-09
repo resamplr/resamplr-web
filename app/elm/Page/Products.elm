@@ -31,10 +31,10 @@ init =
 
         handleLoadError _ =
             "Profile is currently unavailable."
-                |> pageLoadError (Page.Other)
+                |> pageLoadError Page.Other
     in
-        Task.map (Model) loadProducts
-            |> Task.mapError handleLoadError
+    Task.map Model loadProducts
+        |> Task.mapError handleLoadError
 
 
 
@@ -43,14 +43,23 @@ init =
 
 view : Model -> Html msg
 view model =
-    div [ class "home-page" ]
+    div [ class "products-page" ]
         [ viewProducts model ]
 
 
 viewProducts : Model -> Html msg
 viewProducts model =
-    div []
-        (List.map (\p -> div [] [ text (p.name) ]) model.products)
+    div [ class "row" ]
+        (List.map viewTile model.products)
+
+
+viewTile : Product -> Html msg
+viewTile product =
+    div [ class "product-tile-container col-sm-4 col-xs-12" ]
+        [ div [ class "product-tile" ]
+            [ h3 [] [ text product.name ]
+            ]
+        ]
 
 
 

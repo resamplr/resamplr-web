@@ -1,15 +1,15 @@
 module Main exposing (..)
 
 import Html exposing (Html, div, program)
-import Route exposing (Route)
-import Navigation exposing (Location)
-import Views.Page as Page exposing (ActivePage)
 import Json.Decode as Decode exposing (Value)
-import Page.Products as Products
-import Page.NotFound as NotFound
+import Navigation exposing (Location)
 import Page.Errored as Errored exposing (PageLoadError)
-import Util exposing ((=>))
+import Page.NotFound as NotFound
+import Page.Products as Products
+import Route exposing (Route)
 import Task
+import Util exposing ((=>))
+import Views.Page as Page exposing (ActivePage)
 
 
 -- import Page.Product as Product
@@ -19,7 +19,7 @@ type Page
     = Blank
     | NotFound
     | Errored PageLoadError
-    | Product Products.Model
+    | ProductList Products.Model
 
 
 type PageState
@@ -75,23 +75,23 @@ viewPage isLoading page =
         frame =
             Page.frame isLoading
     in
-        -- fully apply frame
-        case page of
-            Blank ->
-                Html.text ""
-                    |> frame Page.Other
+    -- fully apply frame
+    case page of
+        Blank ->
+            Html.text ""
+                |> frame Page.Other
 
-            NotFound ->
-                NotFound.view
-                    |> frame Page.Other
+        NotFound ->
+            NotFound.view
+                |> frame Page.Other
 
-            Errored subModel ->
-                Errored.view subModel
-                    |> frame Page.Other
+        Errored subModel ->
+            Errored.view subModel
+                |> frame Page.Other
 
-            Product subModel ->
-                Products.view subModel
-                    |> frame Page.Products
+        ProductList subModel ->
+            Products.view subModel
+                |> frame Page.Products
 
 
 
@@ -127,16 +127,16 @@ setRoute maybeRoute model =
         errored =
             pageErrored model
     in
-        case maybeRoute of
-            Nothing ->
-                { model | pageState = Loaded NotFound } => Cmd.none
+    case maybeRoute of
+        Nothing ->
+            { model | pageState = Loaded NotFound } => Cmd.none
 
-            Just Route.Root ->
-                transition RootLoaded (Products.init)
+        Just Route.Root ->
+            transition RootLoaded Products.init
 
-            Just Route.Products ->
-                -- redirect to Route.Root
-                model => Route.modifyUrl Route.Root
+        Just Route.Products ->
+            -- redirect to Route.Root
+            model => Route.modifyUrl Route.Root
 
 
 pageErrored : Model -> ActivePage -> String -> ( Model, Cmd msg )
@@ -145,7 +145,7 @@ pageErrored model activePage errorMessage =
         error =
             Errored.pageLoadError activePage errorMessage
     in
-        { model | pageState = Loaded (Errored error) } => Cmd.none
+    { model | pageState = Loaded (Errored error) } => Cmd.none
 
 
 {-| update for our main program. Within the function
@@ -169,26 +169,26 @@ updatePage page msg model =
                 ( newModel, newCmd ) =
                     subUpdate subMsg subModel
             in
-                ( { model | pageState = Loaded (toModel newModel) }, Cmd.map toMsg newCmd )
+            ( { model | pageState = Loaded (toModel newModel) }, Cmd.map toMsg newCmd )
 
         errored =
             pageErrored model
     in
-        case ( msg, page ) of
-            ( SetRoute route, _ ) ->
-                setRoute route model
+    case ( msg, page ) of
+        ( SetRoute route, _ ) ->
+            setRoute route model
 
-            ( RootLoaded (Ok subModel), _ ) ->
-                { model | pageState = Loaded (Product subModel) } => Cmd.none
+        ( RootLoaded (Ok subModel), _ ) ->
+            { model | pageState = Loaded (ProductList subModel) } => Cmd.none
 
-            ( _, NotFound ) ->
-                -- Disregard incoming messages when we're on the
-                -- NotFound page.
-                model => Cmd.none
+        ( _, NotFound ) ->
+            -- Disregard incoming messages when we're on the
+            -- NotFound page.
+            model => Cmd.none
 
-            ( _, _ ) ->
-                -- Disregard incoming messages that arrived for the wrong page
-                model => Cmd.none
+        ( _, _ ) ->
+            -- Disregard incoming messages that arrived for the wrong page
+            model => Cmd.none
 
 
 

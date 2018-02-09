@@ -1,5 +1,6 @@
 module Data.Product exposing (Product, decoder)
 
+import Data.Product.Image as ProductImage
 import Json.Decode as Decode exposing (Decoder)
 import Json.Decode.Pipeline exposing (decode, required)
 

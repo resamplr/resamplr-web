@@ -1,0 +1,8 @@
+[package]
+name = "resamplr"
+version = "0.1.0"
+authors = ["doomy <alexanderpaullozada@gmail.com>"]
+
+[dependencies]
+rocket = "*"
+rocket_codegen = "*"

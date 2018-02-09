@@ -43,8 +43,15 @@ frame isLoading page content =
 
 viewHeader : ActivePage -> Bool -> Html msg
 viewHeader page isLoading =
-    header [ class "view-header" ]
-        []
+    div [ class "view-header" ]
+        [ nav []
+            [ a [ href "/" ]
+                [ h2 [] [ text "Resamplr" ] ]
+            ]
+        , div
+            [ class "spacer" ]
+            []
+        ]
 
 
 viewFooter : Html msg
