@@ -1,3 +1,7 @@
+setup:
+	@echo "Installing necessary stuff"
+	npm install
+
 # ----------------- DEV ------------------ #
 
 # Build rust server and frontend application
