@@ -1,13 +1,19 @@
 #![feature(plugin)]
 #![plugin(rocket_codegen)]
 
+#[macro_use]
+extern crate diesel;
+extern crate r2d2;
+extern crate r2d2_diesel;
 extern crate rocket;
 
 use rocket::response::NamedFile;
 use std::path::{Path, PathBuf};
+use diesel::pg::PgConnection;
+use r2d2_diesel::ConnectionManager;
 
-#[get("/")]              
-fn root() -> std::io::Result<NamedFile> {  
+#[get("/")]
+fn root() -> std::io::Result<NamedFile> {
     NamedFile::open("public/index.html")
 }
 
@@ -17,7 +23,5 @@ fn files(file: PathBuf) -> Option<NamedFile> {
 }
 
 fn main() {
-  // error[E0425]: cannot find value `static_rocket_route_info_for_world` in this scope
-  rocket::ignite().mount("/", routes![root, files]).launch();
+    rocket::ignite().mount("/", routes![root, files]).launch();
 }
-
