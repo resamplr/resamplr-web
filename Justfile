@@ -21,6 +21,7 @@ dev-build-frontend:
 # Run a development server and watch for changes
 dev-run:
 	@echo "Starting up the server"
+	# TODO: gulp watch without blocking cargo run
 	cargo run
 	# TODO: Watch for changes
 
