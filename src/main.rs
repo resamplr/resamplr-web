@@ -7,6 +7,7 @@ extern crate dotenv;
 extern crate r2d2;
 extern crate r2d2_diesel;
 extern crate rocket;
+extern crate rocket_contrib;
 
 use rocket::response::NamedFile;
 use rocket::Rocket;
@@ -15,6 +16,9 @@ use dotenv::dotenv;
 use std::env;
 
 mod db;
+mod schema;
+mod controllers;
+mod models;
 
 fn rocket() -> Rocket {
     dotenv().ok();
