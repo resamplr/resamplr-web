@@ -29,6 +29,7 @@ use rocket::Rocket;
 use std::path::{Path, PathBuf};
 use dotenv::dotenv;
 use std::env;
+use controllers::products;
 
 fn rocket() -> Rocket {
     dotenv().ok();
@@ -44,7 +45,13 @@ fn rocket() -> Rocket {
     // here, but in our `main` procedure.
     rocket::ignite()
         .manage(pool)
-        .mount("/", routes![root, files])
+        .mount("/", routes![
+            root, 
+            files, 
+            products::get,
+            products::index,
+
+            ])
 }
 
 /// Main program
@@ -54,7 +61,7 @@ fn root() -> std::io::Result<NamedFile> {
 }
 
 /// Any public file can be requested here.  That includes all JS and CSS files.
-#[get("/<file..>")]
+#[get("/public/<file..>")]
 fn files(file: PathBuf) -> Option<NamedFile> {
     NamedFile::open(Path::new("public/").join(file)).ok()
 }
