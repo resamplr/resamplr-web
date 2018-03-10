@@ -1,12 +1,10 @@
-use diesel;
 use diesel::prelude::*;
+use diesel;
 use diesel::pg::PgConnection;
+use schema::products;
 
-use super::schema::products;
-use super::schema::products::dsl::products;
-
-// Used for querying products.
-#[derive(Serialize, Queryable)]
+// Base data structure for a product
+#[derive(Queryable)]
 pub struct Product {
     pub id: i32,
     pub name: String,
@@ -29,7 +27,7 @@ impl Product {
 
 	pub fn all(conn: &PgConnection) -> Vec<Product> {
 		// TODO: custom predicate for order
-		products.order(robots::id.desc())
+		products.order(products::id.desc())
 				.load::<Product>(conn)
 				.expect("Error loading products.")
 	}

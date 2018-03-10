@@ -13,7 +13,7 @@ The original code is *not* open-sourced or "free".  However, because Rust is sti
 ## Running
 Make sure you have [Vagrant](https://www.vagrantup.com/) and VirtualBox installed.
 
-Simply run `vagrant up` and then `vagrant ssh`
+Simply run `vagrant up` and then `vagrant ssh`.  Navigate to the working directory at `/vagrant/`.
 
 > Note: You'll also need to run `cargo install diesel_cli --no-default-features --features "postgres"` as the Vagrant box accidentally omits it.  This should be fixed in future versions.
 
