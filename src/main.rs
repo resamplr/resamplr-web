@@ -16,7 +16,6 @@ extern crate r2d2_diesel;
 
 // Web server
 extern crate rocket;
-#[macro_use]
 extern crate rocket_contrib;
 
 mod db;
@@ -50,7 +49,8 @@ fn rocket() -> Rocket {
             files, 
             products::get,
             products::index,
-
+            products::create,
+            
             ])
 }
 

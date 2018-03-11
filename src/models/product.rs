@@ -1,4 +1,3 @@
-use diesel::prelude::*;
 use schema::products;
 
 // Base data structure for a product
@@ -17,20 +16,6 @@ pub struct Product {
 #[table_name = "products"]
 pub struct NewProduct {
 	pub name: String,
-	pub description: Option<String>
+	pub description: Option<String>,
+	pub published: bool
 }
-
-// impl<'a> Product<'a> {
-// 	pub fn show(id: i32, conn: &PgConnection) -> QueryResult<Self> {
-// 		products::table
-// 			.find(id)
-// 			.first::<Product>(&*conn)
-// 	}
-// 
-// 	pub fn all(conn: &PgConnection) -> QueryResult<Vec<Self>> {
-// 		// TODO: custom predicate for order
-// 		products::table
-// 			//.order(products::id.desc())
-// 			.load(&conn)
-// 	}
-// }
