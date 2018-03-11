@@ -15,7 +15,7 @@ pub struct Product {
 #[derive(Serialize, Deserialize, Insertable)]
 #[table_name = "products"]
 pub struct NewProduct {
-	pub name: String,
-	pub description: Option<String>,
-	pub published: bool
+    pub name: String,
+    pub description: Option<String>,
+    pub published: bool
 }
