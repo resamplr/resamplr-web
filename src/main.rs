@@ -50,6 +50,7 @@ fn rocket() -> Rocket {
             products::get,
             products::index,
             products::create,
+            products::delete,
             
             ])
 }
