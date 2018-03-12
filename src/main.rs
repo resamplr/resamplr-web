@@ -1,6 +1,6 @@
 #![feature(plugin)]
-#![feature(custom_attribute)]
 #![plugin(rocket_codegen)]
+#![feature(custom_attribute)]
 
 #[cfg(test)]
 mod tests;
