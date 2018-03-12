@@ -1,5 +1,9 @@
 #![feature(plugin)]
+#![feature(custom_attribute)]
 #![plugin(rocket_codegen)]
+
+#[cfg(test)]
+mod tests;
 
 /// ORM and config
 #[macro_use]
@@ -51,6 +55,7 @@ fn rocket() -> Rocket {
             products::index,
             products::create,
             products::delete,
+            products::update
         ],
     )
 }
