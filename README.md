@@ -1,6 +1,6 @@
 # [Resamplr](https://resamplr.com)
 
-Resamplr is a virtual instruments and sampler community + store.  [Resamplr](resamplr.com) is currently running Ruby on Rails.  This is an effort to port the site to a more managable language.
+Resamplr is a virtual instruments and sampler community + store.  [Resamplr](https://resamplr.com) is currently running Ruby on Rails.  This is an effort to port the site to a more managable language.
 
 ## Why rewrite in Rust?
 RoR is great - but the magic can be too much.  Resamplr outgrew Rails' approaches, and maintaining the original Ruby codebase became much too cumbersome.  
