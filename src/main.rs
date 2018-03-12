@@ -7,10 +7,10 @@ extern crate diesel;
 #[macro_use]
 extern crate diesel_codegen;
 extern crate dotenv;
-#[macro_use] 
+#[macro_use]
 extern crate serde_derive;
 
-/// Connection pooling 
+/// Connection pooling
 extern crate r2d2;
 extern crate r2d2_diesel;
 
@@ -42,17 +42,17 @@ fn rocket() -> Rocket {
 
     // Configure our server, and mount all routes.  We don't "launch" the server
     // here, but in our `main` procedure.
-    rocket::ignite()
-        .manage(pool)
-        .mount("/", routes![
-            root, 
-            files, 
+    rocket::ignite().manage(pool).mount(
+        "/",
+        routes![
+            root,
+            files,
             products::get,
             products::index,
             products::create,
             products::delete,
-            
-            ])
+        ],
+    )
 }
 
 /// Main program
