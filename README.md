@@ -20,6 +20,14 @@ Simply run `vagrant up` and then `vagrant ssh`.  Navigate to the working directo
 To build, run `just dev-build`.  To serve and watch for changes,
 instead run `just dev-run`.
 
+### Running without Vagrant
+Because I use a Windows system, I prefer using Vagrant.  However, if you don't want to use Vagrant and would rather install it yourself, you'll need a few things:
+
+- Postgresql and it's development libraries
+- Diesel CLI tools
+- Rust Nightly
+- NPM / Node (unfortunately)
+
 ## Known problems
 - If you run into a problem where NPM won't install stuff, make sure you use the `--no-bin-links` flag when installing on a Windows host.
 
